@@ -1,0 +1,16 @@
+{
+    "database": {
+        "server": "localhost",
+        "portdb": 5432,
+        "username": "postgres",
+        "password": "",
+        "dbname": "dbrestaurant"
+    },
+    "token":{
+        "project-name":"restaurant",
+        "project-secret":"Restaurant2022"
+    },
+    "host": "http://localhost",
+    "port": "8081",
+    "environment": "development"
+}
