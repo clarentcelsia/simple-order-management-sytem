@@ -1,17 +1,237 @@
 basePath: /api/v1/restaurant
-consumes:
-- application/json
+definitions:
+  model.Base:
+    properties:
+      crt_at:
+        type: string
+      upd_at:
+        type: string
+    type: object
+  model.Customer:
+    properties:
+      base:
+        $ref: '#/definitions/model.Base'
+      customer_address:
+        example: Rangola street 21
+        type: string
+      customer_dob:
+        example: "2022-01-22"
+        type: string
+      customer_email:
+        example: nana@gmail.com
+        type: string
+      customer_id:
+        type: string
+      customer_name:
+        example: Nana
+        type: string
+      customer_phone:
+        example: "0212292012"
+        type: string
+      is_deleted:
+        type: boolean
+    type: object
+  model.Menu:
+    properties:
+      base:
+        $ref: '#/definitions/model.Base'
+      menu_category_id:
+        example: 37
+        type: integer
+      menu_description:
+        example: Sweet sour ginger bread
+        type: string
+      menu_id:
+        type: string
+      menu_name:
+        example: Ginger bread
+        type: string
+      menu_price:
+        example: 12000
+        type: integer
+    type: object
+  model.MenuCategory:
+    properties:
+      menu_category_id:
+        type: integer
+      menu_category_name:
+        example: Appetizer
+        type: string
+    type: object
+  model.OrderDetail:
+    properties:
+      current_price:
+        type: integer
+      menu_id:
+        example: M012jidw
+        type: string
+      order_detail_id:
+        type: string
+      qty:
+        example: 2
+        type: integer
+      subtotal:
+        type: integer
+    type: object
+  model.OrderJSON:
+    properties:
+      customer_id:
+        example: C012333nc2
+        type: string
+      order_date:
+        type: string
+      order_details:
+        items:
+          $ref: '#/definitions/model.OrderDetail'
+        type: array
+      order_id:
+        type: string
+    type: object
+  model.PageResponse:
+    properties:
+      items: {}
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
 host: localhost:8081
 info:
   contact:
     name: Developer
-  description: This page is API documentation for all services relating common data
-    or operation.
+  description: This page is API documentation for simple order management system.
   title: Web Order API
   version: "1.0"
-paths: {}
-produces:
-- application/json
-schemes:
-- ""
+paths:
+  /menu:
+    post:
+      consumes:
+      - application/json
+      description: create menu
+      parameters:
+      - description: menu
+        in: body
+        name: Data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Menu'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: Create menu
+      tags:
+      - example
+  /menu/{id}:
+    get:
+      description: get menu
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: get menu by id
+      tags:
+      - example
+  /menu/list:
+    get:
+      description: get menu
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: get menu
+      tags:
+      - example
+  /menucategory:
+    post:
+      consumes:
+      - application/json
+      description: create menu
+      parameters:
+      - description: menu
+        in: body
+        name: Data
+        required: true
+        schema:
+          $ref: '#/definitions/model.MenuCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: Create menu category
+      tags:
+      - example
+  /order:
+    post:
+      consumes:
+      - application/json
+      description: create order
+      parameters:
+      - description: order
+        in: body
+        name: Data
+        required: true
+        schema:
+          $ref: '#/definitions/model.OrderJSON'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: Create order
+      tags:
+      - example
+  /order/list:
+    get:
+      consumes:
+      - application/json
+      description: create order
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: Get order
+      tags:
+      - example
+  /user/customer:
+    post:
+      consumes:
+      - application/json
+      description: create customer
+      parameters:
+      - description: customer
+        in: body
+        name: Data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PageResponse'
+      summary: Create customer
+      tags:
+      - example
 swagger: "2.0"

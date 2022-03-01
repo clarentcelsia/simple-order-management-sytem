@@ -6,12 +6,6 @@ import "github.com/swaggo/swag"
 
 const docTemplate = `{
     "schemes": {{ marshal .Schemes }},
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
     "swagger": "2.0",
     "info": {
         "description": "{{escape .Description}}",
@@ -23,7 +17,351 @@ const docTemplate = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/menu": {
+            "post": {
+                "description": "create menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "example"
+                ],
+                "summary": "Create menu",
+                "parameters": [
+                    {
+                        "description": "menu",
+                        "name": "Data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Menu"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/list": {
+            "get": {
+                "description": "get menu",
+                "tags": [
+                    "example"
+                ],
+                "summary": "get menu",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/menu/{id}": {
+            "get": {
+                "description": "get menu",
+                "tags": [
+                    "example"
+                ],
+                "summary": "get menu by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/menucategory": {
+            "post": {
+                "description": "create menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "example"
+                ],
+                "summary": "Create menu category",
+                "parameters": [
+                    {
+                        "description": "menu",
+                        "name": "Data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.MenuCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/order": {
+            "post": {
+                "description": "create order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "example"
+                ],
+                "summary": "Create order",
+                "parameters": [
+                    {
+                        "description": "order",
+                        "name": "Data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.OrderJSON"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/list": {
+            "get": {
+                "description": "create order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "example"
+                ],
+                "summary": "Get order",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/customer": {
+            "post": {
+                "description": "create customer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "example"
+                ],
+                "summary": "Create customer",
+                "parameters": [
+                    {
+                        "description": "customer",
+                        "name": "Data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.PageResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Base": {
+            "type": "object",
+            "properties": {
+                "crt_at": {
+                    "type": "string"
+                },
+                "upd_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Customer": {
+            "type": "object",
+            "properties": {
+                "base": {
+                    "$ref": "#/definitions/model.Base"
+                },
+                "customer_address": {
+                    "type": "string",
+                    "example": "Rangola street 21"
+                },
+                "customer_dob": {
+                    "type": "string",
+                    "example": "2022-01-22"
+                },
+                "customer_email": {
+                    "type": "string",
+                    "example": "nana@gmail.com"
+                },
+                "customer_id": {
+                    "type": "string"
+                },
+                "customer_name": {
+                    "type": "string",
+                    "example": "Nana"
+                },
+                "customer_phone": {
+                    "type": "string",
+                    "example": "0212292012"
+                },
+                "is_deleted": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "model.Menu": {
+            "type": "object",
+            "properties": {
+                "base": {
+                    "$ref": "#/definitions/model.Base"
+                },
+                "menu_category_id": {
+                    "type": "integer",
+                    "example": 37
+                },
+                "menu_description": {
+                    "type": "string",
+                    "example": "Sweet sour ginger bread"
+                },
+                "menu_id": {
+                    "type": "string"
+                },
+                "menu_name": {
+                    "type": "string",
+                    "example": "Ginger bread"
+                },
+                "menu_price": {
+                    "type": "integer",
+                    "example": 12000
+                }
+            }
+        },
+        "model.MenuCategory": {
+            "type": "object",
+            "properties": {
+                "menu_category_id": {
+                    "type": "integer"
+                },
+                "menu_category_name": {
+                    "type": "string",
+                    "example": "Appetizer"
+                }
+            }
+        },
+        "model.OrderDetail": {
+            "type": "object",
+            "properties": {
+                "current_price": {
+                    "type": "integer"
+                },
+                "menu_id": {
+                    "type": "string",
+                    "example": "M012jidw"
+                },
+                "order_detail_id": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "integer",
+                    "example": 2
+                },
+                "subtotal": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.OrderJSON": {
+            "type": "object",
+            "properties": {
+                "customer_id": {
+                    "type": "string",
+                    "example": "C012333nc2"
+                },
+                "order_date": {
+                    "type": "string"
+                },
+                "order_details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.OrderDetail"
+                    }
+                },
+                "order_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.PageResponse": {
+            "type": "object",
+            "properties": {
+                "items": {},
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
@@ -31,9 +369,9 @@ var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:8081",
 	BasePath:         "/api/v1/restaurant",
-	Schemes:          []string{""},
+	Schemes:          []string{},
 	Title:            "Web Order API",
-	Description:      "This page is API documentation for all services relating common data or operation.",
+	Description:      "This page is API documentation for simple order management system.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

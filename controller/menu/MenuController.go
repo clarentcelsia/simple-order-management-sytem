@@ -14,6 +14,15 @@ import (
 	"restaurant/util"
 )
 
+// @Summary Create menu category
+// @Schemes
+// @Description create menu
+// @Tags example
+// @Param Data body mOrder.MenuCategory true "menu"
+// @Accept json
+// @Produce json
+// @Success 200 {object} model.PageResponse
+// @Router /menucategory [post]
 func CreateMenuCategory(c *gin.Context) {
 	db, errconn := config.GetConnection()
 	if errconn != nil {
@@ -43,6 +52,15 @@ func CreateMenuCategory(c *gin.Context) {
 	}
 }
 
+// @Summary Create menu
+// @Schemes
+// @Description create menu
+// @Tags example
+// @Param Data body mOrder.Menu true "menu"
+// @Accept json
+// @Produce json
+// @Success 200 {object} model.PageResponse
+// @Router /menu [post]
 func CreateMenu(c *gin.Context) {
 	db, errconn := config.GetConnection()
 	if errconn != nil {
@@ -82,6 +100,13 @@ func CreateMenu(c *gin.Context) {
 	}
 }
 
+// @Summary get menu by id
+// @Schemes
+// @Description get menu
+// @Tags example
+// @Param id path string true "ID"
+// @Success 200 {object} model.PageResponse
+// @Router /menu/{id} [get]
 func FindByID(c *gin.Context) {
 	db, errconn := config.GetConnection()
 	if errconn != nil {
@@ -109,6 +134,12 @@ func GetMenuByID(c *gin.Context, db *sql.DB, id string) (mOrder.Menu, error) {
 	return menu, nil
 }
 
+// @Summary get menu
+// @Schemes
+// @Description get menu
+// @Tags example
+// @Success 200 {object} model.PageResponse
+// @Router /menu/list [get]
 func GetMenus(c *gin.Context) {
 	db, errconn := config.GetConnection()
 	if errconn != nil {

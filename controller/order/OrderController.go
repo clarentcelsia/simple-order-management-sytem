@@ -16,6 +16,15 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+// @Summary Create order
+// @Schemes
+// @Description create order
+// @Tags example
+// @Param Data body mOrder.OrderJSON true "order"
+// @Accept json
+// @Produce json
+// @Success 200 {object} model.PageResponse
+// @Router /order [post]
 func CreateOrder(c *gin.Context) {
 	db, errdb := config.GetConnection()
 	if errdb != nil {
@@ -68,6 +77,14 @@ func CreateOrder(c *gin.Context) {
 
 }
 
+// @Summary Get order
+// @Schemes
+// @Description create order
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {object} model.PageResponse
+// @Router /order/list [get]
 func GetOrders(c *gin.Context) {
 	var orders []mOrder.OrderJSON
 	db, errdb := config.GetConnection()
