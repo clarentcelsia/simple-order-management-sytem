@@ -3,12 +3,12 @@
         "server": "localhost",
         "portdb": 5432,
         "username": "postgres",
-        "password": "123",
+        "password": "thisisjustsample",
         "dbname": "dbrestaurant"
     },
     "token":{
         "project-name":"restaurant",
-        "project-secret":"Restaurant2022"
+        "project-secret":"Restaurant2022Sample"
     },
     "host": "http://localhost",
     "port": "8081",
