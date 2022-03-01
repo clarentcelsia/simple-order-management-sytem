@@ -1,0 +1,17 @@
+basePath: /api/v1/restaurant
+consumes:
+- application/json
+host: localhost:8081
+info:
+  contact:
+    name: Developer
+  description: This page is API documentation for all services relating common data
+    or operation.
+  title: Web Order API
+  version: "1.0"
+paths: {}
+produces:
+- application/json
+schemes:
+- ""
+swagger: "2.0"

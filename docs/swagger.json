@@ -1,0 +1,23 @@
+{
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        ""
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This page is API documentation for all services relating common data or operation.",
+        "title": "Web Order API",
+        "contact": {
+            "name": "Developer"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8081",
+    "basePath": "/api/v1/restaurant",
+    "paths": {}
+}
